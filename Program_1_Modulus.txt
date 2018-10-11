@@ -45,7 +45,10 @@ New Register(6)+New Register(1) = New Register (7)
 New Register(7)>6^P
 6^P-New Register(6)= Modulus
 
-################################
+#############################################
+#This is the Final Method I Tried Using     #
+#And it works for each case not the previous#
+#############################################
 #P=3 and Q=17
 6^3 % 17 = 12
 
