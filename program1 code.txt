@@ -18,18 +18,19 @@ Counter:
 
 sub R5, 1
 slt R5, R0
-beq R0, 1, mod
+beq R0, 1, Mod
 j exponent
 
 Mod:
-
-init R0, zero
-slt R2, R4
-beq R4
-shl R2
-j mod
-
-
+Load R0,0
+loop1
+Shl R2 #Shifts R2 by 1 
+Beq R2, R1, loop1 #Checks if R1<R2
+Beq R1, R2, loop2 #Cehcks if R2<R1
+Loop2
+Sub R2,R1,R2 #R1-R2=R2
+Beq R1, R2, Loop2  #checks if R2<R1
+Slt R2, R2, 0 #Checks if R2>0
 
 Return1:
 
