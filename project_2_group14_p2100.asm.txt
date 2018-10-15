@@ -1,0 +1,37 @@
+
+	init R1, 0 				#Total Matching Scores
+	init R2, 8 				#Memory Pattern Stored @ Memory Address 8
+	init R3, 16				#Store 16 into register R3
+
+
+array:
+
+	load R4, 3				#Load Target Array stored @ Memory Address 3
+	load R5, 8				#R5 has the value of the first index of array
+
+array1:
+	
+	xor R4, R5				#Gives a hamming # in binary
+	beq R4, 0, fullMatch	#If match jump to fullMatch
+
+
+increaseIndex:
+
+	add R2, 1				#Increase index by 1
+	beq R2, 32				#Jump to result 
+	j result				#If we are at index 16, jump to result
+	j array1				#Else jump back to array1 and go thru loop again
+
+fullMatch:
+
+	add R1, 1				#
+	j array1				#
+
+
+result:
+	
+	load R1, 5				#Store C into Memory Address 5
+							#Which is # of total matching
+
+	load R3, 4				#Store S into memory address 4
+							#Total # of matching bits for 80%
