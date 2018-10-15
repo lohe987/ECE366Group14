@@ -12,7 +12,27 @@ array:
 array1:
 	
 	xor R4, R5				#Gives a hamming # in binary
+	init R6, 0				#Load 0 into R6
 	beq R4, 0, fullMatch	#If match jump to fullMatch
+
+andCounter:
+
+	sub R6, 1				#Subtract 1 from Register 6
+	xor R4, R6				#Xor R4 and R6
+	add R7, 1				#Increase R7 by 1
+	j highestMatchingUpdate
+
+highestMatchingUpdate:
+	load R9, R8				#Load register 8 into 9
+	slt R8, R7				#If R7>R8
+	beq R8, 1				#Branch if R8 = 1
+	j newHighestMatching
+	j increaseIndex
+
+newHighestMatching:
+	load R8, R7				#Load Register 7 into register 8
+							#this is new hamming distance
+	j increaseIndex
 
 
 increaseIndex:
@@ -27,11 +47,10 @@ fullMatch:
 	add R1, 1				#
 	j array1				#
 
-
 result:
 	
 	load R1, 5				#Store C into Memory Address 5
 							#Which is # of total matching
 
-	load R3, 4				#Store S into memory address 4
+	load R9, 4				#Store S register 9 into memory 4
 							#Total # of matching bits for 80%
