@@ -24,7 +24,7 @@ andCounter:
 
 highestMatchingUpdate:
 	load R9, R8				#Load register 8 into 9
-	slt R8, R7				#If R7>R8
+	slt R7, R8				#If R7<R8
 	beq R8, 1				#Branch if R8 = 1
 	j newHighestMatching
 	j increaseIndex
