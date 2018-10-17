@@ -1,0 +1,30 @@
+init R0, 7	#Set R0 to array mem address
+add R2, R0	#R2 = 7
+init R0, 1	
+add R0, R2	#Now R2 == 8
+load R2, R0	#Load value into R2
+init R0, 3	#Set R0 to target pattern mem address
+load R1, R0	#Load it's value into R1
+XOR R1, R2	#Check to see if they are the same
+init R0 ,1	#For check purpose
+add R0, R1	#If R0 is still equal to 1 then they where the same
+beq 7		#PC = PC + 7 if they where the same
+
+init R0, 1	#Set to 1 to increase index
+add R2, R0	#index++
+init R0, 16	#Check for out of bounds
+slt R0, R2	#if 16<index[curr] then R0 == 1
+beq 4		#if R0 == 1 then exit
+j 9		#else PC = PC - 9
+
+init R0, 1	
+add R3, R0	#If full match then increase counter
+j 3		#PC= PC - 3
+
+init R2, 5	#start clean up
+store R3, R2	#Store number of full counts into M[3]
+init R1, 15	#Max Count
+init R0, 1
+init R2, 4	#M[4]
+add R1, R0	#Workaround to get it equal to 16
+store R1, R2	#Store 16 into M[4]
