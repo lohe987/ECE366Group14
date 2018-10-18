@@ -44,4 +44,4 @@ init R2, 0      #result
 add R2, R3      #R2 == R3 == result
 init R3, 2
 store R3        #Store R2 -> M[2]
-exit
+EXIT
