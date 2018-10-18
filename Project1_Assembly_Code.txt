@@ -1,0 +1,47 @@
+load R0         #load M[0] into R1
+init R2, 3      
+shl R2          #R2 = 6
+init R0, 1
+slt R1, R0
+beq 15      #If P == 0 goto result
+init R0, 2
+slt R1, R0
+init R3, 3
+shl R3          #R3 == 6
+beq 15         #if P==1 goto mod
+shl R2          #Exponent
+shl R2
+shl R3
+j 2
+j -4
+add R3, R2
+init R2, 0
+add R2, R3      #R2 == R3
+j 3
+beq 7          #goto result for special case
+j -7            #goto exponent $$$$$$$$
+init R0,1       #Counter
+sub R1, R0      #Index--
+slt R0, R1
+beq 3           #goto mod
+j -5            #goto exponent
+beq 13          #keep going to result for special case
+init R0, 1      #mod
+load R0         #R1 = M[1] == Q
+slt R3, R1      #R3 == 6^p && LOOP1
+beq 3           #if Q > P
+shl R1
+j -3            #Goto LOOP1
+shr R1          #setup
+sub R3, R1      #R3 = R3-R1 == P-Q
+init R0, 1
+load R0         #R1 == Fresh Q
+sub R3, R1      #loop 2 sub Q
+slt R3, R1      #When R3<Q
+beq 2           #goto result
+j -3             #goto loop2
+init R2, 0      #result
+add R2, R3      #R2 == R3 == result
+init R3, 2
+store R3        #Store R2 -> M[2]
+exit
