@@ -1,6 +1,8 @@
 #Disassembler for Machine Code
 
-input_file = open("Machine_Code_Project2.txt","r") 	#Reads MachineCode	
+input_file = open("Machine_Code_Project2.txt","r") 	#Reads MachineCode
+input_file = open("Project1_Machine_Code.txt","r")	#Reads MachineCode
+
 output_file = open("Assembly_Code_Project2.txt","w") 	#Writes ISA
 
 for line in input_file:
