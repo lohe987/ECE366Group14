@@ -1,0 +1,47 @@
+init R0, 2
+shl R0
+shl R0
+load, R0
+init R0, 0
+add R0, R1
+add R2, R0
+init R0, 3                #arrayloop
+load R0
+XOR R2
+j 2
+j -4
+init R0, 1
+add R0, R1
+beq 2                   #goto fullMatch
+j 4
+add R3, R0              #fullMatch
+j 2
+j -7
+init R0, 1              #increase index
+add R2, R0
+init R0, 3              #check OOB
+shl R0
+j 2
+j -6
+shl R0
+shl R0                  #R0 = 24
+init R1, 1
+sub R0, R1
+slt R0, R2
+beq 2                   #If at end of array goto exit
+j -7
+init R2, 0              #exit
+add R2, R3
+init R1, 3
+init R0, 2
+add R1, R0
+store R1                #store R2 -> M[5]
+init R2, 2
+shl R2
+shl R2
+shl R2
+init R1, 3
+init R0, 1
+add R1m R0
+store R1                #Store 16 -> M[4]
+EXIT
